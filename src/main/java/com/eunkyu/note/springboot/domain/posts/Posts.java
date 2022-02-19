@@ -1,5 +1,11 @@
+/*
+    domain model
+    -
+ */
+
 package com.eunkyu.note.springboot.domain.posts;
 
+import com.eunkyu.note.springboot.domain.BaseTimeEntity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,7 +16,7 @@ import javax.persistence.*;
 @Getter             //(lombok anno) getter 메소드를 자동으로 추가
 @NoArgsConstructor  //(lombok anno)기본 생성자를 자동으로 추가
 @Entity             //(jpa anno)실제 DB의 테이블과 매칭될 클래스임을 명시
-public class Posts {
+public class Posts extends BaseTimeEntity {
     @Id //해당 테이블의 PK필드를 나타냄
     @GeneratedValue(strategy = GenerationType.IDENTITY) //PK의 생성 규칙 auto_increment
     private Long id;
@@ -28,5 +34,10 @@ public class Posts {
         this.title = title;
         this.content = content;
         this.author = author;
+    }
+
+    public void update(String title, String content) {
+        this.title = title;
+        this.content = content;
     }
 }
