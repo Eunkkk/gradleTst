@@ -1,5 +1,5 @@
 buildscript {
-    ext{
+    ext{            //ext는 build.gradle에서 사용하는 전역변수 설정
         springBootVersion = '2.1.7.RELEASE'
     }
     repositories {
@@ -11,6 +11,7 @@ buildscript {
     }
 }
 
+//앞서 선언한 플러그인을 적용할지 결정(항상 추가)
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
@@ -19,11 +20,15 @@ apply plugin: 'io.spring.dependency-management'
 group 'com.eunkyu.baek'
 version '1.0-SNAPSHOT'
 
+//각종 의존성들을 어떤 원격 저장소에서 받을지
 repositories {
     mavenCentral()
+    jcenter() //mavenCentral 보다 라이브러리 업로드 난이도 쉬움
 }
 
+// 의존성 선언
 dependencies {
     compile('org.springframework.boot:spring-boot-starter-web')
+    compile('org.projectlombok:lombok');
     testCompile('org.springframework.boot:spring-boot-starter-test')
 }
